@@ -1,11 +1,11 @@
 const Results = ({ mortgageAmount, mortgageTerm, interestRate }) => {
   const MonthlyPayementCalculation = () => {
-    const loanMoney = parseFloat(mortgageAmount);
-    const rate = parseFloat(interestRate) / 100 / 12;
-    const mortgagePeriod = parseInt(mortgageTerm) * 12;
+    const loanMoney = parseFloat(mortgageAmount) || 0;
+    const rate = parseFloat(interestRate) / 100 / 12 || 0;
+    const mortgagePeriod = parseInt(mortgageTerm) * 12 || 0;
 
-    if (rate === 0) {
-      return loanMoney / mortgagePeriod;
+    if (rate === 0 || mortgagePeriod === 0) {
+      return loanMoney / mortgagePeriod || 0;
     }
 
     const M =

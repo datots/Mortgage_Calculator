@@ -31,7 +31,7 @@ const Calculator = () => {
     },
   });
 
-  const ResetData = ({ resetForm }) => {
+  const ResetData = () => {
     formik.resetForm();
     setMortgageData({
       mortgageAmount: "",
@@ -40,14 +40,19 @@ const Calculator = () => {
     });
   };
   return (
-    <section className="bg-white flex flex-col sm:flex-row">
-      <div className="sm:m-10">
-        <div className="mt-14 sm:flex pb-8 ">
-          <h1 className="pr-44 pb-3">Mortgage Calculator</h1>
-          <button onClick={ResetData}>Clear All</button>
+    <section className="bg-white flex flex-col sm:flex-row ">
+      <div className="m-5 h-auto w-auto pt-14 sm:m-5 overflow-x-auto">
+        <div className=" sm:flex  pb-8 ">
+          <h1 className="pr-4 sm:pr-44 pb-3">Mortgage Calculator</h1>
+          <button
+            onClick={ResetData}
+            className="ml-auto bg-blue-500 text-white p-2 rounded"
+          >
+            Clear All
+          </button>
         </div>
         <form onSubmit={formik.handleSubmit}>
-          <div className="flex flex-col">
+          <div className="flex flex-col mb-4">
             <h1>Mortgage Amount</h1>
             <span className="inline-flex items-center border border-gray-500 p-2 rounded">
               <p className="bg-slate-300">£</p>{" "}
@@ -100,7 +105,7 @@ const Calculator = () => {
               ) : null}
             </div>
           </div>
-          <div className="flex flex-col mt-10 mb-10 sm:flex-col">
+          <div className="flex flex-col mt-10 mb-10">
             <h1 className="pb-5">Mortgage Type</h1>
             <span className="flex inline-flex border border-gray-500 p-2 rounded gap-4 mb-2">
               {" "}
@@ -111,7 +116,7 @@ const Calculator = () => {
               <input type="radio" /> <h1>Interest Only</h1>
             </span>
           </div>
-          <button className="bg-lime-400" type="submit">
+          <button className="bg-lime-400 text-white p-2 rounded" type="submit">
             Calculate Repayement
           </button>
         </form>
