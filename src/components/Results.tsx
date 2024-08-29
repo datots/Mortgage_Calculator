@@ -1,11 +1,23 @@
-const Results = ({ mortgageAmount, mortgageTerm, interestRate }) => {
+import { number } from "yup";
+
+interface resultsProps {
+  mortgageAmount: number;
+  mortgageTerm: number;
+  interestRate: number;
+}
+
+const Results: React.FC<resultsProps> = ({
+  mortgageAmount,
+  mortgageTerm,
+  interestRate,
+}) => {
   const MonthlyPayementCalculation = () => {
-    const loanMoney = parseFloat(mortgageAmount) || 0;
-    const rate = parseFloat(interestRate) / 100 / 12 || 0;
-    const mortgagePeriod = parseInt(mortgageTerm) * 12 || 0;
+    const loanMoney = mortgageAmount;
+    const rate = interestRate / 100 / 12;
+    const mortgagePeriod = mortgageTerm * 12;
 
     if (rate === 0 || mortgagePeriod === 0) {
-      return loanMoney / mortgagePeriod || 0;
+      return (loanMoney / mortgagePeriod).toFixed(2);
     }
 
     const M =
