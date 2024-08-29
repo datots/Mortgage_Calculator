@@ -8,7 +8,7 @@ interface CalculatorProps {
   interestRate: number;
 }
 
-const Calculator = () => {
+const Calculator: React.FC = (): JSX.Element => {
   const [mortgageData, setMortgageData] = useState<CalculatorProps>({
     mortgageAmount: 0,
     mortgageTerm: 0,
@@ -16,9 +16,9 @@ const Calculator = () => {
   });
   const formik = useFormik({
     initialValues: {
-      mortgageAmount: "",
-      mortgageTerm: "",
-      interestRate: "",
+      mortgageAmount: 0,
+      mortgageTerm: 0,
+      interestRate: 0,
     },
     validationSchema: Yup.object({
       mortgageAmount: Yup.number()
@@ -32,7 +32,11 @@ const Calculator = () => {
         .min(0.01, "Interest rate must be greater than 0"),
     }),
     onSubmit: (values) => {
-      setMortgageData(values);
+      setMortgageData({
+        mortgageAmount: Number(values.mortgageAmount),
+        mortgageTerm: Number(values.mortgageTerm),
+        interestRate: Number(values.interestRate),
+      });
     },
   });
 
