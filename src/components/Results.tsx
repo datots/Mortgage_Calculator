@@ -1,5 +1,3 @@
-import { number } from "yup";
-
 interface resultsProps {
   mortgageAmount: number;
   mortgageTerm: number;
