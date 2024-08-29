@@ -9,19 +9,19 @@ const Results: React.FC<resultsProps> = ({
   mortgageTerm,
   interestRate,
 }) => {
-  const MonthlyPayementCalculation = () => {
+  const MonthlyPayementCalculation = (): number => {
     const loanMoney = mortgageAmount;
     const rate = interestRate / 100 / 12;
     const mortgagePeriod = mortgageTerm * 12;
 
     if (rate === 0 || mortgagePeriod === 0) {
-      return (loanMoney / mortgagePeriod).toFixed(2);
+      return loanMoney / mortgagePeriod || 0;
     }
 
     const M =
       (loanMoney * rate * Math.pow(1 + rate, mortgagePeriod)) /
       (Math.pow(1 + rate, mortgagePeriod) - 1);
-    return M.toFixed(2);
+    return parseFloat(M.toFixed(2));
   };
 
   const PayementByMonth = MonthlyPayementCalculation();
