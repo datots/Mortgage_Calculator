@@ -2,12 +2,17 @@ import { useFormik } from "formik";
 import Results from "./Results";
 import { useState } from "react";
 import * as Yup from "yup";
+interface CalculatorProps {
+  mortgageAmount: number;
+  mortgageTerm: number;
+  interestRate: number;
+}
 
 const Calculator = () => {
-  const [mortgageData, setMortgageData] = useState({
-    mortgageAmount: "",
-    mortgageTerm: "",
-    interestRate: "",
+  const [mortgageData, setMortgageData] = useState<CalculatorProps>({
+    mortgageAmount: 0,
+    mortgageTerm: 0,
+    interestRate: 0,
   });
   const formik = useFormik({
     initialValues: {
@@ -34,9 +39,9 @@ const Calculator = () => {
   const ResetData = () => {
     formik.resetForm();
     setMortgageData({
-      mortgageAmount: "",
-      mortgageTerm: "",
-      interestRate: "",
+      mortgageAmount: 0,
+      mortgageTerm: 0,
+      interestRate: 0,
     });
   };
   return (
